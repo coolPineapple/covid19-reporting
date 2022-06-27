@@ -1,0 +1,9 @@
+{
+	"name": "playground-01-ADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d77014a1-ae93-4a61-997c-a9c78176ed76",
+		"tenantId": "d703c5c6-d0ca-4189-8043-c14df64d5d05"
+	}
+}
