@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "playground-01-ADF"
+		},
+		"ls_ablob_covid19reportingsa_connectionString": {
+			"value": ""
+		},
+		"ls_adls_covid19reportingdl_accountKey": {
+			"value": ""
+		},
+		"ls_adls_covid19reportingdl_properties_typeProperties_url": {
+			"value": "https://playground01dlsa.dfs.core.windows.net/"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
