@@ -68,9 +68,35 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@equals(activity('Get Metadata').output.columnCount,13)",
+						"value": "@equals(activity('Get Metadata').output.columnCount,20)",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Mail",
+							"type": "WebActivity",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"url": "http://hello",
+								"method": "POST",
+								"body": "Heyyyy...",
+								"datasets": [
+									{
+										"referenceName": "ds_population_raw_gz",
+										"type": "DatasetReference"
+									}
+								]
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy Population data_copy",
