@@ -5,10 +5,10 @@
 		"factoryName": {
 			"value": "covid-anaysis-reporting-adf"
 		},
-		"ls_azblob_covid_reporting_sa_connectionString": {
+		"ls_adls_covid_reporting_dl_accountKey": {
 			"value": ""
 		},
-		"ls_adls_covid_reporting_dl_accountKey": {
+		"ls_azblob_covid_reporting_sa_connectionString": {
 			"value": ""
 		},
 		"ls_adls_covid_reporting_dl_properties_typeProperties_url": {
