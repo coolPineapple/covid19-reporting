@@ -1,0 +1,23 @@
+{
+	"name": "ds_covid_tsv",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_covid_reporting_dl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "population_by_age.tsv",
+				"fileSystem": "raw"
+			},
+			"columnDelimiter": "\t",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
