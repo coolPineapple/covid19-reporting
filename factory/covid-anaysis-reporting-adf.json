@@ -1,0 +1,9 @@
+{
+	"name": "covid-anaysis-reporting-adf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "dc1b0175-4eef-4f1b-99e9-8315993bb960",
+		"tenantId": "ef482d62-6d49-4b67-867f-633aecad8416"
+	}
+}
