@@ -78,8 +78,8 @@
 						"referenceName": "ds_covid_raw_gz",
 						"type": "DatasetReference"
 					},
-					"timeout": "1.00:00:00",
-					"sleep": 600,
+					"timeout": "0.00:00:30",
+					"sleep": 10,
 					"minimumSize": 1024
 				}
 			},
