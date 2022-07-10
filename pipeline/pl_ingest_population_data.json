@@ -84,7 +84,7 @@
 				}
 			},
 			{
-				"name": "Fail1",
+				"name": "File does not exist",
 				"type": "Fail",
 				"dependsOn": [
 					{
@@ -94,7 +94,11 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"message": "Source files does not exist",
+					"errorCode": "NO_SOURCE_FILE"
+				}
 			}
 		],
 		"annotations": []
