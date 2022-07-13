@@ -18,16 +18,6 @@
 				}
 			},
 			{
-				"name": "File does not exist",
-				"type": "Fail",
-				"dependsOn": [],
-				"userProperties": [],
-				"typeProperties": {
-					"message": "Source files does not exist",
-					"errorCode": "NO_SOURCE_FILE"
-				}
-			},
-			{
 				"name": "Get Metadata1",
 				"type": "GetMetadata",
 				"dependsOn": [
@@ -76,6 +66,10 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"expression": {
+						"value": "@equals(activity('Get Metadata1').output.columnCount,13 )",
+						"type": "Expression"
+					},
 					"ifFalseActivities": [
 						{
 							"name": "Failed to copy files",
