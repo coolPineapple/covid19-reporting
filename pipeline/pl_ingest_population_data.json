@@ -76,13 +76,9 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
-					"expression": {
-						"value": "@equals(activity('Get Metadata1').output.columnCount, 13 )",
-						"type": "Expression"
-					},
 					"ifTrueActivities": [
 						{
-							"name": "copy population data",
+							"name": "Copy population data",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -98,7 +94,7 @@
 									"type": "DelimitedTextSource",
 									"storeSettings": {
 										"type": "AzureBlobStorageReadSettings",
-										"recursive": false,
+										"recursive": true,
 										"enablePartitionDiscovery": false
 									},
 									"formatSettings": {
@@ -108,7 +104,8 @@
 								"sink": {
 									"type": "DelimitedTextSink",
 									"storeSettings": {
-										"type": "AzureBlobFSWriteSettings"
+										"type": "AzureBlobFSWriteSettings",
+										"maxConcurrentConnections": 1
 									},
 									"formatSettings": {
 										"type": "DelimitedTextWriteSettings",
@@ -117,7 +114,6 @@
 									}
 								},
 								"enableStaging": false,
-								"parallelCopies": 1,
 								"translator": {
 									"type": "TabularTranslator",
 									"typeConversion": true,
