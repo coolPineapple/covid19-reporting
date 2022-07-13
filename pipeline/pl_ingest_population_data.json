@@ -76,6 +76,21 @@
 				],
 				"userProperties": [],
 				"typeProperties": {
+					"ifFalseActivities": [
+						{
+							"name": "Failed to copy files",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": {
+									"value": "@\"Column count is activity('Get Metadata1').output.columnCount\"",
+									"type": "Expression"
+								},
+								"errorCode": "COLUMN_COUNT_MISMATCH"
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy population data",
