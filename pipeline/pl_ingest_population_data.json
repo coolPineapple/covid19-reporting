@@ -145,6 +145,45 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "Delete source file on successfule copy",
+				"type": "Delete",
+				"dependsOn": [
+					{
+						"activity": "If Condition - Source file copy",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.00:01:00",
+					"retry": 1,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "ds_covid_raw_gz",
+						"type": "DatasetReference"
+					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "ls_azblob_covid_reporting_sa",
+							"type": "LinkedServiceReference"
+						},
+						"path": "population"
+					},
+					"enableLogging": true,
+					"storeSettings": {
+						"type": "AzureBlobStorageReadSettings",
+						"recursive": false,
+						"enablePartitionDiscovery": false
+					}
+				}
 			}
 		],
 		"annotations": []
