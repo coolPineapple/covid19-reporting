@@ -41,13 +41,13 @@
 								"type": "DatasetReference",
 								"parameters": {}
 							},
-							"timeout": "0.00:00:30",
+							"timeout": "0.00:05:00",
 							"sleep": 10,
 							"minimumSize": 1024
 						}
 					},
 					{
-						"name": "Get Metadata1",
+						"name": "Get source file metadata",
 						"type": "GetMetadata",
 						"dependsOn": [
 							{
@@ -58,8 +58,8 @@
 							}
 						],
 						"policy": {
-							"timeout": "0.00:05:00",
-							"retry": 0,
+							"timeout": "0.00:02:00",
+							"retry": 1,
 							"retryIntervalInSeconds": 30,
 							"secureOutput": false,
 							"secureInput": false
@@ -72,7 +72,8 @@
 								"parameters": {}
 							},
 							"fieldList": [
-								"columnCount"
+								"columnCount",
+								"itemName"
 							],
 							"storeSettings": {
 								"type": "AzureBlobStorageReadSettings",
@@ -85,11 +86,11 @@
 						}
 					},
 					{
-						"name": "If Condition1",
+						"name": "If Condition - Source file copy",
 						"type": "IfCondition",
 						"dependsOn": [
 							{
-								"activity": "Get Metadata1",
+								"activity": "Get source file metadata",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -98,33 +99,30 @@
 						"userProperties": [],
 						"typeProperties": {
 							"expression": {
-								"value": "@equals(activity('Get Metadata1').output.columnCount,13 )",
+								"value": "@equals(activity('Get source file metadata').output.columnCount,13 )",
 								"type": "Expression"
 							},
 							"ifFalseActivities": [
 								{
-									"name": "Failed to copy files",
+									"name": "Fail due to source column count",
 									"type": "Fail",
 									"dependsOn": [],
 									"userProperties": [],
 									"typeProperties": {
-										"message": {
-											"value": "@\"Column count is activity('Get Metadata1').output.columnCount\"",
-											"type": "Expression"
-										},
-										"errorCode": "COLUMN_COUNT_MISMATCH"
+										"message": "Number of Columns are not matching",
+										"errorCode": "MISMATCH_COLUMNS"
 									}
 								}
 							],
 							"ifTrueActivities": [
 								{
-									"name": "Copy population data",
+									"name": "Copy Population data",
 									"type": "Copy",
 									"dependsOn": [],
 									"policy": {
-										"timeout": "0.00:05:00",
-										"retry": 2,
-										"retryIntervalInSeconds": 30,
+										"timeout": "0.00:02:00",
+										"retry": 1,
+										"retryIntervalInSeconds": 60,
 										"secureOutput": false,
 										"secureInput": false
 									},
@@ -144,8 +142,7 @@
 										"sink": {
 											"type": "DelimitedTextSink",
 											"storeSettings": {
-												"type": "AzureBlobFSWriteSettings",
-												"maxConcurrentConnections": 1
+												"type": "AzureBlobFSWriteSettings"
 											},
 											"formatSettings": {
 												"type": "DelimitedTextWriteSettings",
