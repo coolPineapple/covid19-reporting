@@ -72,6 +72,18 @@
 						"value": "@equals(activity('Get source file metadata').output.columnCount,13 )",
 						"type": "Expression"
 					},
+					"ifFalseActivities": [
+						{
+							"name": "Fail due to source column count",
+							"type": "Fail",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"message": "Number of Columns are not matching",
+								"errorCode": "MISMATCH_COLUMNS"
+							}
+						}
+					],
 					"ifTrueActivities": [
 						{
 							"name": "Copy Population data",
