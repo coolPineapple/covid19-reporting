@@ -56,7 +56,7 @@
 				}
 			},
 			{
-				"name": "If Condition1",
+				"name": "If Condition - Source file copy",
 				"type": "IfCondition",
 				"dependsOn": [
 					{
