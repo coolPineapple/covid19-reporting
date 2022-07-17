@@ -2,11 +2,11 @@
 	"name": "tr_copy_source_data",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/population/",
+			"blobPathBeginsWith": "/population/blobs/",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/e7957b47-1a7c-4db5-81fb-0c5acaa6fff0/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/coviddatareporting11sa",
 			"events": [
