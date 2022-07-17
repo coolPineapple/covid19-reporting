@@ -1,0 +1,22 @@
+{
+	"name": "ds_death_cases_raw_data_csv_http",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_ecdc_data_http",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "/covid19-reporting-adf/blob/main/ECDC_Source_Datatsets/cases_deaths.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
