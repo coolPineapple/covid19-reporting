@@ -15,7 +15,7 @@
 			"value": "https://coviddatareporting11dl.dfs.core.windows.net/"
 		},
 		"ls_ecdc_data_http_properties_typeProperties_url": {
-			"value": "https://raw.githubusercontent.com"
+			"value": "@{linkedService().sourceBaseURL}"
 		},
 		"tr_copy_source_data_properties_typeProperties_scope": {
 			"value": "/subscriptions/e7957b47-1a7c-4db5-81fb-0c5acaa6fff0/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/coviddatareporting11sa"

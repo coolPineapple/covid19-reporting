@@ -21,7 +21,7 @@
 		},
 		"ls_ecdc_data_http_properties_typeProperties_url": {
 			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com"
+			"defaultValue": "@{linkedService().sourceBaseURL}"
 		},
 		"tr_copy_source_data_properties_typeProperties_scope": {
 			"type": "string",
