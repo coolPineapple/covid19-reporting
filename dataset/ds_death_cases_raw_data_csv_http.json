@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "HttpServerLocation",
-				"relativeUrl": "/coolPineapple/covid19-reporting-adf/blob/main/ECDC_Source_Datatsets/cases_deaths.csv"
+				"relativeUrl": "/coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/cases_deaths.csv"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
