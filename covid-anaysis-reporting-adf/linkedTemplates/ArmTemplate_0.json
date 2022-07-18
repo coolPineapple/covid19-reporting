@@ -218,12 +218,20 @@
 					"referenceName": "ls_adls_covid_reporting_dl",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"sinkFileName": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "death_cases_raw_data.csv",
+						"fileName": {
+							"value": "@dataset().sinkFileName",
+							"type": "Expression"
+						},
 						"folderPath": "ecdc",
 						"fileSystem": "raw"
 					},
@@ -247,12 +255,20 @@
 					"referenceName": "ls_ecdc_data_http",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"sourceRelativeURL": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "HttpServerLocation",
-						"relativeUrl": "/coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/cases_deaths.csv"
+						"relativeUrl": {
+							"value": "@dataset().sourceRelativeURL",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -319,14 +335,24 @@
 							{
 								"referenceName": "ds_death_cases_raw_data_csv_http",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"sourceRelativeURL": {
+										"value": "@pipeline().parameters.sourceRelativeURL",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
 							{
 								"referenceName": "ds_death_cases_raw_data_csv_dl",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"sinkFileName": {
+										"value": "@pipeline().parameters.sinkFileName",
+										"type": "Expression"
+									}
+								}
 							}
 						]
 					}
@@ -334,6 +360,14 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
+				},
+				"parameters": {
+					"sourceRelativeURL": {
+						"type": "string"
+					},
+					"sinkFileName": {
+						"type": "string"
+					}
 				},
 				"annotations": []
 			},
