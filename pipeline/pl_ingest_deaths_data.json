@@ -49,17 +49,37 @@
 				"inputs": [
 					{
 						"referenceName": "ds_death_cases_raw_data_csv_http",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sourceRelativeURL": {
+								"value": "@pipeline().parameters.sourceRelativeURL",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
 						"referenceName": "ds_death_cases_raw_data_csv_dl",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"sinkFileName": {
+								"value": "@pipeline().parameters.sinkFileName",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"sourceRelativeURL": {
+				"type": "string"
+			},
+			"sinkFileName": {
+				"type": "string"
+			}
+		},
 		"annotations": []
 	}
 }
