@@ -48,7 +48,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "ds_death_cases_raw_data_csv_http",
+						"referenceName": "ds_ecdc_data_csv_http",
 						"type": "DatasetReference",
 						"parameters": {
 							"sourceRelativeURL": {
@@ -60,7 +60,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "ds_death_cases_raw_data_csv_dl",
+						"referenceName": "ds_ecdc_raw_data_csv_dl",
 						"type": "DatasetReference",
 						"parameters": {
 							"sinkFileName": {

@@ -1,5 +1,5 @@
 {
-	"name": "ds_death_cases_raw_data_csv_http",
+	"name": "ds_ecdc_data_csv_http",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_ecdc_data_http",
