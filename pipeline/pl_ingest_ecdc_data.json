@@ -19,7 +19,7 @@
 						"type": "JsonSource",
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
-							"recursive": true,
+							"recursive": false,
 							"modifiedDatetimeEnd": "2022-07-18T00:00:00.952Z",
 							"enablePartitionDiscovery": false
 						},
@@ -30,7 +30,8 @@
 					"dataset": {
 						"referenceName": "ds_source_file_list_json",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -47,7 +48,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Source file list lookup').output",
+						"value": "@activity('Source file list lookup').output.value",
 						"type": "Expression"
 					},
 					"activities": [
@@ -102,6 +103,10 @@
 									"parameters": {
 										"sourceRelativeURL": {
 											"value": "@item().sourceRelativeURL",
+											"type": "Expression"
+										},
+										"sourceBaseURL": {
+											"value": "@item().sourceBaseURL",
 											"type": "Expression"
 										}
 									}
