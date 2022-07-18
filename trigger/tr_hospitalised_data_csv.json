@@ -1,0 +1,25 @@
+{
+	"name": "tr_hospitalised_data_csv",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2022-07-18T00:28:00",
+				"timeZone": "India Standard Time",
+				"schedule": {
+					"minutes": [
+						10
+					],
+					"hours": [
+						8
+					]
+				}
+			}
+		}
+	}
+}
