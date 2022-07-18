@@ -5,12 +5,16 @@
 			"referenceName": "ls_ecdc_data_http",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sourceRelativeURL": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
-				"type": "HttpServerLocation",
-				"relativeUrl": "/coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/cases_deaths.csv"
+				"type": "HttpServerLocation"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",

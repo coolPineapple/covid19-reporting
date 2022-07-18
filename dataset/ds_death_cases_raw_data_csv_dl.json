@@ -5,12 +5,16 @@
 			"referenceName": "ls_adls_covid_reporting_dl",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"sinkFileName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "death_cases_raw_data.csv",
 				"folderPath": "ecdc",
 				"fileSystem": "raw"
 			},
