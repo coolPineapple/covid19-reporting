@@ -27,14 +27,6 @@
 			"type": "string",
 			"defaultValue": "/subscriptions/e7957b47-1a7c-4db5-81fb-0c5acaa6fff0/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/coviddatareporting11sa"
 		},
-		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
-			"type": "string",
-			"defaultValue": "coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/hospital_admissions.csv"
-		},
-		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
-			"type": "string",
-			"defaultValue": "hospital_admissions.csv"
-		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -76,12 +68,6 @@
 					},
 					"tr_copy_source_data_properties_typeProperties_scope": {
 						"value": "[parameters('tr_copy_source_data_properties_typeProperties_scope')]"
-					},
-					"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
-						"value": "[parameters('tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]"
-					},
-					"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
-						"value": "[parameters('tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]"
 					}
 				}
 			},

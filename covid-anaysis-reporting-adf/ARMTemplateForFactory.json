@@ -26,14 +26,6 @@
 		"tr_copy_source_data_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/e7957b47-1a7c-4db5-81fb-0c5acaa6fff0/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/coviddatareporting11sa"
-		},
-		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
-			"type": "string",
-			"defaultValue": "coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/hospital_admissions.csv"
-		},
-		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
-			"type": "string",
-			"defaultValue": "hospital_admissions.csv"
 		}
 	},
 	"variables": {
@@ -63,7 +55,7 @@
 								"type": "JsonSource",
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
-									"recursive": true,
+									"recursive": false,
 									"modifiedDatetimeEnd": "2022-07-18T00:00:00.952Z",
 									"enablePartitionDiscovery": false
 								},
@@ -75,7 +67,8 @@
 								"referenceName": "ds_source_file_list_json",
 								"type": "DatasetReference",
 								"parameters": {}
-							}
+							},
+							"firstRowOnly": false
 						}
 					},
 					{
@@ -92,7 +85,7 @@
 						"userProperties": [],
 						"typeProperties": {
 							"items": {
-								"value": "@activity('Source file list lookup').output",
+								"value": "@activity('Source file list lookup').output.value",
 								"type": "Expression"
 							},
 							"activities": [
@@ -146,7 +139,11 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"sourceRelativeURL": {
-													"value": "@pipeline().parameters.sourceRelativeURL",
+													"value": "@item().sourceRelativeURL",
+													"type": "Expression"
+												},
+												"sourceBaseURL": {
+													"value": "@item().sourceBaseURL",
 													"type": "Expression"
 												}
 											}
@@ -158,7 +155,7 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"sinkFileName": {
-													"value": "@pipeline().parameters.sinkFileName",
+													"value": "@item().sinkFileName",
 													"type": "Expression"
 												}
 											}
@@ -172,17 +169,6 @@
 				"policy": {
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
-				},
-				"parameters": {
-					"sourceRelativeURL": {
-						"type": "string"
-					},
-					"sinkFileName": {
-						"type": "string"
-					},
-					"sourceBaseURL": {
-						"type": "string"
-					}
 				},
 				"annotations": []
 			},
@@ -518,10 +504,19 @@
 			"properties": {
 				"linkedServiceName": {
 					"referenceName": "ls_ecdc_data_http",
-					"type": "LinkedServiceReference"
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"sourceBaseURL": {
+							"value": "@dataset().sourceBaseURL",
+							"type": "Expression"
+						}
+					}
 				},
 				"parameters": {
 					"sourceRelativeURL": {
+						"type": "string"
+					},
+					"sourceBaseURL": {
 						"type": "string"
 					}
 				},
@@ -690,10 +685,7 @@
 							"referenceName": "pl_ingest_ecdc_data",
 							"type": "PipelineReference"
 						},
-						"parameters": {
-							"sourceRelativeURL": "[parameters('tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]",
-							"sinkFileName": "[parameters('tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]"
-						}
+						"parameters": {}
 					}
 				],
 				"type": "ScheduleTrigger",
