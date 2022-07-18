@@ -101,7 +101,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"sourceRelativeURL": {
-											"value": "@pipeline().parameters.sourceRelativeURL",
+											"value": "@item().sourceRelativeURL",
 											"type": "Expression"
 										}
 									}
@@ -113,7 +113,7 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"sinkFileName": {
-											"value": "@pipeline().parameters.sinkFileName",
+											"value": "@item().sinkFileName",
 											"type": "Expression"
 										}
 									}
@@ -124,17 +124,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"sourceRelativeURL": {
-				"type": "string"
-			},
-			"sinkFileName": {
-				"type": "string"
-			},
-			"sourceBaseURL": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
