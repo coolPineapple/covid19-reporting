@@ -5,11 +5,6 @@
 			"referenceName": "ls_azblob_covid_reporting_sa",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"sourceBaseURL": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "Json",
 		"typeProperties": {
