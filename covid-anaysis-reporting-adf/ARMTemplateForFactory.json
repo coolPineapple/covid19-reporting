@@ -26,6 +26,14 @@
 		"tr_copy_source_data_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/e7957b47-1a7c-4db5-81fb-0c5acaa6fff0/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/coviddatareporting11sa"
+		},
+		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
+			"type": "string",
+			"defaultValue": "coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/hospital_admissions.csv"
+		},
+		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
+			"type": "string",
+			"defaultValue": "hospital_admissions.csv"
 		}
 	},
 	"variables": {
@@ -33,13 +41,13 @@
 	},
 	"resources": [
 		{
-			"name": "[concat(parameters('factoryName'), '/pl_ingest_deaths_data')]",
+			"name": "[concat(parameters('factoryName'), '/pl_ingest_ecdc_data')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy deaths data",
+						"name": "Copy ECDC data",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
@@ -84,7 +92,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "ds_death_cases_raw_data_csv_http",
+								"referenceName": "ds_ecdc_data_csv_http",
 								"type": "DatasetReference",
 								"parameters": {
 									"sourceRelativeURL": {
@@ -96,7 +104,7 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "ds_death_cases_raw_data_csv_dl",
+								"referenceName": "ds_ecdc_raw_data_csv_dl",
 								"type": "DatasetReference",
 								"parameters": {
 									"sinkFileName": {
@@ -123,8 +131,8 @@
 				"annotations": []
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/ds_death_cases_raw_data_csv_http')]",
-				"[concat(variables('factoryId'), '/datasets/ds_death_cases_raw_data_csv_dl')]"
+				"[concat(variables('factoryId'), '/datasets/ds_ecdc_data_csv_http')]",
+				"[concat(variables('factoryId'), '/datasets/ds_ecdc_raw_data_csv_dl')]"
 			]
 		},
 		{
@@ -447,7 +455,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_death_cases_raw_data_csv_dl')]",
+			"name": "[concat(parameters('factoryName'), '/ds_ecdc_raw_data_csv_dl')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -484,7 +492,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_death_cases_raw_data_csv_http')]",
+			"name": "[concat(parameters('factoryName'), '/ds_ecdc_data_csv_http')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -582,6 +590,47 @@
 				}
 			},
 			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tr_hospitalised_data_csv')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Started",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pl_ingest_ecdc_data",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"sourceRelativeURL": "[parameters('tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL')]",
+							"sinkFileName": "[parameters('tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2022-07-18T00:28:00",
+						"timeZone": "India Standard Time",
+						"schedule": {
+							"minutes": [
+								10
+							],
+							"hours": [
+								8
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/pl_ingest_ecdc_data')]"
+			]
 		}
 	]
 }

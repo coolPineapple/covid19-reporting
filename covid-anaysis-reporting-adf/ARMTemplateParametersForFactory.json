@@ -19,6 +19,12 @@
 		},
 		"tr_copy_source_data_properties_typeProperties_scope": {
 			"value": "/subscriptions/e7957b47-1a7c-4db5-81fb-0c5acaa6fff0/resourceGroups/covid-reporting-rg/providers/Microsoft.Storage/storageAccounts/coviddatareporting11sa"
+		},
+		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sourceRelativeURL": {
+			"value": "coolPineapple/covid19-reporting-adf/main/ECDC_Source_Datatsets/hospital_admissions.csv"
+		},
+		"tr_hospitalised_data_csv_properties_pl_ingest_ecdc_data_parameters_sinkFileName": {
+			"value": "hospital_admissions.csv"
 		}
 	}
 }
