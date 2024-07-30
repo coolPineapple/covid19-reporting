@@ -1,0 +1,9 @@
+{
+	"name": "my-adf-studio",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "26796d7f-1b38-4d7f-bcc3-b8a49a8b23d4",
+		"tenantId": "0aeb4760-5a7d-401a-978d-e6dad8f0f3ef"
+	}
+}
